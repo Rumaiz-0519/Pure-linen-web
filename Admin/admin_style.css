@@ -1,0 +1,303 @@
+/* Admin Panel Styles */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --primary-color: #1B365D;
+    --secondary-color: #708090;
+    --accent-color: #d8d8d8;
+    --text-color: #333333;
+    --light-color: #FFFFFF;
+    --dark-color: #0c1d36;
+    --success-color: #088178;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: #f8f9fa;
+    color: var(--text-color);
+    padding-top: 80px;
+}
+
+/* Navbar */
+.navbar {
+    background-color: var(--light-color) !important;
+    box-shadow: var(--shadow);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+.navbar .nav-link {
+    color: var(--text-color) !important;
+    font-weight: 500;
+    padding: 0.5rem 1rem !important;
+    transition: var(--transition);
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+    color: var(--primary-color) !important;
+}
+
+/* Admin Container */
+.admin-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.admin-title {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+
+/* Admin Cards */
+.admin-card {
+    background-color: var(--light-color);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    height: 100%;
+    transition: var(--transition);
+    overflow: hidden;
+}
+
+.admin-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.admin-card .card-title {
+    color: var(--primary-color);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.admin-card .card-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.admin-btn {
+    background-color: var(--primary-color);
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    transition: var(--transition);
+    width: 100%;
+    font-weight: 500;
+}
+
+.admin-btn:hover {
+    background-color: var(--dark-color);
+}
+
+/* Tables */
+.admin-table {
+    background-color: var(--light-color);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.admin-table th {
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    padding: 15px;
+    font-weight: 500;
+}
+
+.admin-table td {
+    padding: 15px;
+    vertical-align: middle;
+}
+
+.admin-table tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+/* Form styling */
+.admin-form {
+    background-color: var(--light-color);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.admin-form label {
+    font-weight: 500;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.admin-form input,
+.admin-form select,
+.admin-form textarea {
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.admin-form input:focus,
+.admin-form select:focus,
+.admin-form textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(27, 54, 93, 0.25);
+}
+
+.admin-form button {
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    border: none;
+    padding: 12px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    width: 100%;
+    transition: var(--transition);
+}
+
+.admin-form button:hover {
+    background-color: var(--dark-color);
+}
+
+/* Product cards */
+.product-card {
+    background-color: var(--light-color);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: var(--transition);
+    margin-bottom: 20px;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.product-card .card-content {
+    padding: 15px;
+}
+
+.product-card h5 {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.product-card .color {
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+}
+
+.product-card .price {
+    color: var(--text-color);
+    font-weight: 700;
+    margin: 10px 0;
+}
+
+.btn-group {
+    display: flex;
+    gap: 10px;
+}
+
+.update-btn {
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    flex: 1;
+    transition: var(--transition);
+}
+
+.update-btn:hover {
+    background-color: var(--dark-color);
+}
+
+.delete-btn {
+    background-color: var(--danger-color);
+    color: var(--light-color);
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    flex: 1;
+    transition: var(--transition);
+}
+
+.delete-btn:hover {
+    background-color: #bb2d3b;
+}
+
+/* Responsive design */
+@media (max-width: 991px) {
+    .navbar-collapse {
+        background-color: var(--light-color);
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 10px;
+        box-shadow: var(--shadow);
+    }
+    
+    .admin-card {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-title {
+        font-size: 2rem;
+    }
+    
+    .admin-form {
+        padding: 20px;
+    }
+    
+    .product-card img {
+        height: 180px;
+    }
+}
+
+@media (max-width: 576px) {
+    .admin-container {
+        padding: 10px;
+    }
+    
+    .admin-card .card-title {
+        font-size: 1.1rem;
+    }
+    
+    .admin-card .card-value {
+        font-size: 1.5rem;
+    }
+    
+    .admin-table {
+        font-size: 0.9rem;
+    }
+}
