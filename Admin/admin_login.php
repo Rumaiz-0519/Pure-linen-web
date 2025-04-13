@@ -4,7 +4,6 @@ ini_set('display_errors', 1);
 
 session_start();
 
-// Create a standalone database connection instead of requiring connect.php
 $host = "localhost";
 $user = "root";
 $pass = "";
@@ -70,15 +69,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     // For users table, check with password verification if using hashed passwords
                     // Otherwise do a direct comparison
                     if (strlen($user['password']) > 20) {
-                        // Likely a hashed password
+                        // for hashed password
                         $passwordMatches = password_verify($password, $user['password']);
                     } else {
-                        // Likely a plain text password
+                        // for plain text password
                         $passwordMatches = ($password === $user['password']);
                     }
                     
                     if ($passwordMatches) {
-                        // Set session variables
                         $_SESSION['user_id'] = $user['id'];
                         $_SESSION['firstName'] = $user['firstName'];
                         $_SESSION['email'] = $user['email'];

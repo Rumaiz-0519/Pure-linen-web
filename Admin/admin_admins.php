@@ -4,7 +4,6 @@ ini_set('display_errors', 1);
 
 session_start();
 
-// Create a standalone database connection
 $host = "localhost";
 $user = "root";
 $pass = "";
@@ -60,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($verify_result->num_rows === 1) {
             $admin_data = $verify_result->fetch_assoc();
             $stored_hash = $admin_data['password'];
-            
+        
             // Verify password
             if (password_verify($currentAdminPassword, $stored_hash)) {
                 // Password verified, proceed with new admin creation

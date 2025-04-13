@@ -61,12 +61,10 @@ if (isset($_POST['add_featured'])) {
     $product_id = trim($_POST['product_id']);
     $position = intval($_POST['position']);
     
-    // Validate input
     if (empty($product_id)) {
         $error_message = "Please select a product.";
     } else {
         try {
-            // Check if product already featured
             $check_stmt = $conn->prepare("SELECT COUNT(*) AS count FROM featured_products WHERE product_id = ?");
             $check_stmt->bind_param("s", $product_id);
             $check_stmt->execute();
@@ -76,14 +74,12 @@ if (isset($_POST['add_featured'])) {
             if ($count > 0) {
                 $error_message = "This product is already featured.";
             } else {
-                // Add to featured products
                 $stmt = $conn->prepare("INSERT INTO featured_products (product_id, position) VALUES (?, ?)");
                 $stmt->bind_param("si", $product_id, $position);
                 
                 if ($stmt->execute()) {
                     $success_message = "Product added to featured products successfully.";
                     
-                    // Reload the page to show updated list
                     header("Location: featured_products.php");
                     exit();
                 } else {
@@ -96,7 +92,6 @@ if (isset($_POST['add_featured'])) {
     }
 }
 
-// Handle remove featured product
 if (isset($_GET['remove']) && !empty($_GET['remove'])) {
     $featured_id = intval($_GET['remove']);
     
@@ -107,7 +102,6 @@ if (isset($_GET['remove']) && !empty($_GET['remove'])) {
         if ($stmt->execute()) {
             $success_message = "Product removed from featured successfully.";
             
-            // Reload the page to show updated list
             header("Location: featured_products.php");
             exit();
         } else {
@@ -118,7 +112,6 @@ if (isset($_GET['remove']) && !empty($_GET['remove'])) {
     }
 }
 
-// Handle update position
 if (isset($_POST['update_positions'])) {
     try {
         $conn->begin_transaction();
@@ -135,7 +128,6 @@ if (isset($_POST['update_positions'])) {
         $conn->commit();
         $success_message = "Positions updated successfully.";
         
-        // Reload the page to show updated list
         header("Location: featured_products.php");
         exit();
     } catch (Exception $e) {
@@ -144,7 +136,6 @@ if (isset($_POST['update_positions'])) {
     }
 }
 
-// Get available products (that are not already featured)
 $available_products = [];
 try {
     $stmt = $conn->prepare("

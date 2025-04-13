@@ -3,7 +3,6 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Initialize payment method variables
 $payment_method = isset($_SESSION['payment_method']) ? $_SESSION['payment_method'] : 'cod'; // Default to COD if not set
 
 // Initialize card info variables

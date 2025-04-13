@@ -2,7 +2,6 @@
 session_start();
 include 'connect.php';
 
-// If user is already logged in, redirect to home page
 if (isset($_SESSION['user_id'])) {
     header("Location: index.php");
     exit();

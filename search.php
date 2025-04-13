@@ -2,13 +2,10 @@
 require_once 'config.php';
 session_start();
 
-// Get search query from GET parameter
 $search_query = isset($_GET['query']) ? $_GET['query'] : '';
 
-// Get cart count from session if it exists
 $cart_count = isset($_SESSION['cart_count']) ? $_SESSION['cart_count'] : 0;
 
-// Search products if query exists
 $products = [];
 if (!empty($search_query)) {
     $stmt = $conn->prepare("SELECT * FROM products WHERE 

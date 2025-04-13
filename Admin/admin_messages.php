@@ -2,7 +2,6 @@
 session_start();
 require_once '../config.php';
 
-// Check if user is logged in and is admin
 if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'admin') {
     header("Location: ../login.php");
     exit();
@@ -11,30 +10,24 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_type']) || $_SESSION[
 $success_message = '';
 $error_message = '';
 
-// Handle email sending
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send_reply'])) {
     $to_email = $_POST['to_email'];
     $subject = $_POST['subject'];
     $message_text = $_POST['message_text'];
     $message_id = $_POST['message_id'];
     
-    // Set email headers
     $headers = "MIME-Version: 1.0" . "\r\n";
     $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
     $headers .= "From: Pure Linen <info@purelinen.com>" . "\r\n";
     $headers .= "Reply-To: info@purelinen.com" . "\r\n";
     
-    // Format message as HTML
     $html_message = nl2br($message_text);
     
-    // Try to send the email
     if (mail($to_email, $subject, $html_message, $headers)) {
         $success_message = "Reply sent successfully to $to_email";
         
-        // Log this reply in the database
         $reply_table = isset($_POST['message_type']) && $_POST['message_type'] === 'bulk' ? 'bulk_message_replies' : 'message_replies';
         
-        // Create table if it doesn't exist
         $conn->query("CREATE TABLE IF NOT EXISTS $reply_table (
             id INT AUTO_INCREMENT PRIMARY KEY,
             message_id INT NOT NULL,
@@ -414,12 +407,12 @@ $admin_name = $_SESSION['firstName'] ?? 'Admin';
                                                                             <textarea class="form-control" id="message_text<?php echo $message['id']; ?>" name="message_text" 
                                                                                 rows="10" required>Dear <?php echo htmlspecialchars($message['name']); ?>,
 
-Thank you for contacting Pure Linen. Regarding your inquiry:
+                                                                                        Thank you for contacting Pure Linen. Regarding your inquiry:
 
-[Your response here]
+                                                                                        [Your response here]
 
-Best regards,
-Pure Linen Team
+                                                                                        Best regards,
+                                                                                        Pure Linen Team
                                                                             </textarea>
                                                                         </div>
                                                                     </div>

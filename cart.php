@@ -2,7 +2,6 @@
 session_start();
 require_once 'config.php';
 
-// Get cart items
 $session_id = session_id();
 $cartItems = [];
 $total = 0;

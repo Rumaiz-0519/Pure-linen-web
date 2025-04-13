@@ -4,7 +4,6 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 
-// Check if PHPMailer is already included, if not try to include it
 if (!class_exists('PHPMailer\PHPMailer\PHPMailer')) {
     $phpmailerPath = __DIR__ . '/PHPMailer/src/';
     
@@ -13,13 +12,10 @@ if (!class_exists('PHPMailer\PHPMailer\PHPMailer')) {
         require_once $phpmailerPath . 'PHPMailer.php';
         require_once $phpmailerPath . 'SMTP.php';
         
-        // Log success
         error_log("PHPMailer files loaded successfully from: " . $phpmailerPath);
     } else {
-        // Log error
         error_log("PHPMailer files not found at: " . $phpmailerPath);
         
-        // Try alternative location
         $altPath = __DIR__ . '/vendor/phpmailer/phpmailer/src/';
         if (file_exists($altPath . 'Exception.php')) {
             require_once $altPath . 'Exception.php';
@@ -32,49 +28,39 @@ if (!class_exists('PHPMailer\PHPMailer\PHPMailer')) {
     }
 }
 
-// Function to generate a verification code
 if (!function_exists('generateVerificationCode')) {
     function generateVerificationCode() {
-        // Generate a 6-digit verification code
         return rand(100000, 999999);
     }
 }
 
-// Function to send verification email
 if (!function_exists('sendVerificationEmail')) {
     function sendVerificationEmail($email, $firstName, $code) {
-        // Create a new PHPMailer instance
         $mail = new PHPMailer(true);
 
         try {
-            // Enable verbose debug output (comment out in production)
             $mail->SMTPDebug = SMTP::DEBUG_SERVER;
             $debugOutput = "";
             
-            // Custom debug output handler to capture output
             $mail->Debugoutput = function($str, $level) use (&$debugOutput) {
                 $debugOutput .= "Debug level $level: $str\n";
                 error_log("PHPMailer: $str");
             };
 
-            // Server settings
             $mail->isSMTP();
             $mail->Host       = 'smtp.gmail.com';
             $mail->SMTPAuth   = true;
-            $mail->Username   = 'mrblackmaster0123@gmail.com';  // YOUR GMAIL
-            $mail->Password   = 'bjmzksexswyukhwe';  // APP PASSWORD (not regular password)
+            $mail->Username   = 'mrblackmaster0123@gmail.com'; 
+            $mail->Password   = 'bjmzksexswyukhwe';  
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port       = 587;
             
-            // Set timeout values
-            $mail->Timeout = 60; // seconds
-            $mail->SMTPKeepAlive = true; // maintain connection between multiple messages
+            $mail->Timeout = 60; 
+            $mail->SMTPKeepAlive = true; 
 
-            // Recipients
             $mail->setFrom('mrblackmaster0123@gmail.com', 'Pure Linen');
             $mail->addAddress($email, $firstName);
 
-            // Content
             $mail->isHTML(true);
             $mail->Subject = 'Pure Linen - Email Verification';
             

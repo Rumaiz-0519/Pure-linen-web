@@ -132,7 +132,7 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_type']) || $_SESSION[
                         $error_message = "Error updating delivery status: " . $conn->error;
                     }
                 } else {
-                    // Create new delivery record
+                    // Create new delivey record
                     $scheduled_date = date('Y-m-d', strtotime($subscription['start_date'] . ' + ' . ($delivery_num - 1) . ' months'));
                     $insert_delivery = $conn->prepare("
                         INSERT INTO subscription_deliveries 

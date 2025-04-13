@@ -2,7 +2,6 @@
 session_start();
 require_once 'config.php';
 
-// Check if subscription parameters are provided
 if (!isset($_GET['type']) || !isset($_GET['duration'])) {
     header("Location: swatch.php");
     exit();

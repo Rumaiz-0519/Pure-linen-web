@@ -4,7 +4,6 @@ ini_set('display_errors', 1);
 
 session_start();
 
-// Database connection
 $host = "localhost";
 $user = "root";
 $pass = "";

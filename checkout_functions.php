@@ -1,5 +1,4 @@
 <?php
-// Function to safely get cart items
 function getCartItems() {
     global $conn;
     $sessionId = session_id();
